@@ -124,3 +124,25 @@
         }());
     </script>
 <% } %>
+<!-- Webmention-->
+<% if (theme.webmention.enabled && theme.webmention.baseUrl){ %>
+  <script type="text/javascript">
+      var webmentionContext = {
+        baseUrl: '<%= theme.webmention.baseUrl %>'
+      };
+
+      (function (webmentionContext) {
+
+        var url = window.location.href;
+        var webmentionBaseUrl = webmentionContext.baseUrl;
+
+        webmentionContext.webmentionsPromise = fetch(webmentionBaseUrl + "/api/mentions.jf2?target=" + encodeURIComponent(url))
+        .then(function (response) {
+          return response.json();
+        })
+        .catch(function (ex) {
+          console.error('fetch webmentions error' + ex);
+        });
+      })(webmentionContext);
+  </script>
+<% } %>
