@@ -125,7 +125,7 @@
     </script>
 <% } %>
 <!-- Webmention-->
-<% if (theme.webmention.enabled && theme.webmention.baseUrl){ %>
+<% if (theme.webmention && theme.webmention.enabled && theme.webmention.baseUrl){ %>
   <script type="text/javascript">
       var webmentionContext = {
         baseUrl: '<%= theme.webmention.baseUrl %>'
